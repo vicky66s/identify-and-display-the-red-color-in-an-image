@@ -1,0 +1,22 @@
+import cv2
+
+# Read the image
+image = cv2.imread('your_image.jpg')
+
+# Convert BGR to RGB
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+# Define lower and upper bounds for the red color
+lower_red = (0, 0, 150)
+upper_red = (100, 100, 255)
+
+# Create a mask for the red color
+mask = cv2.inRange(image_rgb, lower_red, upper_red)
+
+# Apply the mask to the original image
+red_only = cv2.bitwise_and(image_rgb, image_rgb, mask=mask)
+
+# Display the image
+cv2.imshow('Red Only', red_only)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
